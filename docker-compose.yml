@@ -1,0 +1,41 @@
+version: '3.0'
+services:
+  nginx:
+    build: ./docker/nginx
+    ports:
+      - "80:443"
+    stdin_open: true
+    tty: true
+    depends_on:
+      - wordpress
+    volumes:
+      - wp_files:/var/www/html
+      - ./docker/nginx/sites-available:/etc/nginx/sites-available
+    networks:
+      - docker_network
+  wordpress:
+    build: ./docker/wordpress
+    stdin_open: true
+    tty: true
+    env_file: ./docker/.env
+    depends_on:
+      - mariadb
+    volumes:
+      - wp_files:/var/www/html
+    networks:
+      - docker_network
+  mariadb:
+    build: ./docker/mariadb
+    stdin_open: true
+    tty: true
+    env_file: ./docker/.env
+    volumes:
+      - wp_database:/var/lib/mysql
+    networks:
+      - docker_network
+volumes:
+  wp_files:
+  wp_database:
+networks:
+  docker_network:
+
