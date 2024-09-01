@@ -24,6 +24,8 @@ services:
       - wp_files:/var/www/html
     networks:
       - docker_network
+    expose:
+      - 9000
   mariadb:
     build: ./docker/mariadb
     stdin_open: true
@@ -33,6 +35,8 @@ services:
       - wp_database:/var/lib/mysql
     networks:
       - docker_network
+    expose:
+      - 3306
 volumes:
   wp_files:
   wp_database:
