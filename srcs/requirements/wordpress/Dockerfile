@@ -11,7 +11,7 @@ RUN set -eux; \
 	chmod +x wp-cli.phar; \
 	mv wp-cli.phar /usr/local/bin/wp; \
 	wp --allow-root --version;
-COPY ./entrypoint.sh /etc/
-COPY ./www.conf /etc/php/7.4/fpm/pool.d/
+COPY ./tools/entrypoint.sh /etc/
+COPY ./conf/www.conf /etc/php/7.4/fpm/pool.d/
 
 ENTRYPOINT ["/etc/entrypoint.sh"]

@@ -1,7 +1,7 @@
 version: '3.0'
 services:
   nginx:
-    build: ./docker/nginx
+    build: ./requirements/nginx
     ports:
       - "80:443"
     stdin_open: true
@@ -10,14 +10,14 @@ services:
       - wordpress
     volumes:
       - wp_files:/var/www/html
-      - ./docker/nginx/sites-available:/etc/nginx/sites-available
+      - ./requirements/nginx/conf:/etc/nginx/sites-available
     networks:
       - docker_network
   wordpress:
-    build: ./docker/wordpress
+    build: ./requirements/wordpress
     stdin_open: true
     tty: true
-    env_file: ./docker/.env
+    env_file: ./../.env
     depends_on:
       - mariadb
     volumes:
@@ -27,10 +27,10 @@ services:
     expose:
       - 9000
   mariadb:
-    build: ./docker/mariadb
+    build: ./requirements/mariadb
     stdin_open: true
     tty: true
-    env_file: ./docker/.env
+    env_file: ./../.env
     volumes:
       - wp_database:/var/lib/mysql
     networks:
