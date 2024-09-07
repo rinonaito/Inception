@@ -24,7 +24,7 @@ if [ ! -f /var/www/html/wp-config.php ]; then
 	cd ${WP_INSTALL_DIR}
 
 	# create wp-config.php if parameter is correct
-	sudo -u www-data wp config create \
+	sudo -u www-data wp --debug config create \
 		--dbname=$MYSQL_DATABASE \
 		--dbuser=$MYSQL_USER \
 		--dbpass=$MYSQL_PASSWORD \
