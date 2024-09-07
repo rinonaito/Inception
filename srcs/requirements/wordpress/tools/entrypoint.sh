@@ -24,13 +24,23 @@ if [ ! -f /var/www/html/wp-config.php ]; then
 	cd ${WP_INSTALL_DIR}
 
 	# create wp-config.php if parameter is correct
-	sudo -u www-data wp --debug config create \
+	sudo -u www-data wp config create \
 		--dbname=$MYSQL_DATABASE \
 		--dbuser=$MYSQL_USER \
 		--dbpass=$MYSQL_PASSWORD \
 		--dbhost=$WORDPRESS_DB_HOST \
 		--force \
 		--path=${WP_INSTALL_DIR}
+
+	sudo -u www-data wp --debug core install \
+		--path=${WP_INSTALL_DIR} \
+		--url="localhost:80" \
+		--title=$WP_TITLE \
+		--admin_user=$ADMIN_USER \
+		--admin_password=$ADMIN_PASSWORD \
+		--admin_email=$ADMIN_EMAIL
+#		--url=$DOMAIN_NAME \
+
 fi
 
 bash
