@@ -34,12 +34,11 @@ if [ ! -f /var/www/html/wp-config.php ]; then
 
 	sudo -u www-data wp --debug core install \
 		--path=${WP_INSTALL_DIR} \
-		--url="localhost" \
+		--url=$DOMAIN_NAME \
 		--title=$WP_TITLE \
 		--admin_user=$ADMIN_USER \
 		--admin_password=$ADMIN_PASSWORD \
 		--admin_email=$ADMIN_EMAIL
-#		--url=$DOMAIN_NAME \
 
 fi
 
