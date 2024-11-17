@@ -2,11 +2,11 @@
 
 COUNTRY="JP"
 STATE="Tokyo"
-LOCALITY="Kita-ku"
+LOCALITY="Shinjuku"
 ORGANIZATION="42"
 ORG_UNIT="Cluster"
-COMMON="RINO"
-EMAIL="rinodelevingne@gmail.com"
+COMMON="rnaito.42.fr"
+EMAIL="rnaito@student.42tokyo.jp"
 
 mkdir /etc/nginx/ssl
 openssl genrsa -out /etc/nginx/ssl/server.key 2048

@@ -19,6 +19,7 @@
 # Default server configuration
 #
 
+
 server {
 	# SSL configuration
  	listen 443 ssl default_server;
