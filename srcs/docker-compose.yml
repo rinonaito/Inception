@@ -40,7 +40,17 @@ services:
       - 3306
 volumes:
   wp_files:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/rnaito/data/files
+      o: bind
   wp_database:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/rnaito/data/database
+      o: bind
 networks:
   docker_network:
 
