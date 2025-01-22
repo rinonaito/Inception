@@ -12,5 +12,6 @@ down	:
 	docker-compose -f $(DOCKER_COMPOSE_FILE) down
 reset	:
 	docker-compose -f $(DOCKER_COMPOSE_FILE) down -v
+	sudo rm -rf $(VOLUME_DIR)
 
 .PHONY: build

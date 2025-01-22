@@ -1,7 +1,6 @@
 #!/bin/bash
 
 if [ ! -d "/var/lib/mysql/$MYSQL_DATABASE" ]; then
-	echo "inside of the biggest if";
 
 	# add mysql-group if NOT exist
 	if ! getent group mysql; then
@@ -40,6 +39,18 @@ FLUSH PRIVILEGES;
 EOF
 
 	mysqld --user=mysql --bootstrap < /bin/cat < /etc/query.txt
+fi
+# add for the test
+# make /run/mysqld directory if NOT exist
+if [ ! -d "/run/mysqld" ]; then
+  mkdir -p /run/mysqld
+fi
+
+# set user:group as a owner of the socket directory
+chown -R mysql:mysql /run/mysqld
+
+if [ ! -d "/var/lib/mysql/mysql" ]; then
+  mysql_install_db --user=mysql
 fi
 
 exec "$@"
