@@ -15,3 +15,4 @@ COPY ./tools/entrypoint.sh /etc/
 COPY ./conf/www.conf /etc/php/7.4/fpm/pool.d/
 
 ENTRYPOINT ["/etc/entrypoint.sh"]
+CMD ["/usr/sbin/php-fpm7.4", "--nodaemonize", "--fpm-config", "/etc/php/7.4/fpm/php-fpm.conf"]

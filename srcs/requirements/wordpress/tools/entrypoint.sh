@@ -4,7 +4,6 @@ WP_INSTALL_DIR=/var/www/html/
 
 wget https://wordpress.org/latest.zip
 unzip latest.zip
-service php7.4-fpm start;
 
 if [ ! -f /var/www/html/wp-config.php ]; then
 
@@ -42,4 +41,9 @@ if [ ! -f /var/www/html/wp-config.php ]; then
 
 fi
 
-bash
+if [ ! -d "/run/php" ]; then
+    echo "php already present, skipping creation"
+    mkdir -p /run/php
+fi
+
+exec "$@"
