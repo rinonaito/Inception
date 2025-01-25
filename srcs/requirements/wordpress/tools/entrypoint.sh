@@ -35,9 +35,16 @@ if [ ! -f /var/www/html/wp-config.php ]; then
 		--path=${WP_INSTALL_DIR} \
 		--url=$DOMAIN_NAME \
 		--title=$WP_TITLE \
-		--admin_user=$ADMIN_USER \
-		--admin_password=$ADMIN_PASSWORD \
-		--admin_email=$ADMIN_EMAIL
+		--admin_user=$WP_ADMIN_USER \
+		--admin_password=$WP_ADMIN_PASSWORD \
+		--admin_email=$WP_ADMIN_EMAIL
+
+	sudo -u www-data wp user create \
+		$WP_USER \
+		$WP_USER_EMAIL \
+		--role=$WP_USER_ROLE \
+		--user_pass=$WP_USER_PASSWORD
+	echo "Successfully created additional user"
 
 fi
 
